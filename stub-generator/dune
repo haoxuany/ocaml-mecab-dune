@@ -1,0 +1,19 @@
+(executable
+ (name mecab_stub_generator)
+ (modules mecab_stub_generator)
+ (libraries mecab_stubs ctypes.stubs ctypes))
+
+(rule
+ (targets mecab_stubs.c mecab_generated.ml)
+ (deps mecab_stub_generator.exe)
+ (action
+  (run %{deps})))
+
+(library
+ (name mecab_generated)
+ (modules mecab_generated)
+ (c_library_flags -lmecab)
+ (foreign_stubs
+  (language c)
+  (names mecab_stubs))
+ (libraries ctypes.stubs))

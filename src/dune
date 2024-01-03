@@ -1,0 +1,6 @@
+(library
+ (name mecab)
+ (libraries
+   mecab_stubs
+   mecab_generated
+))
